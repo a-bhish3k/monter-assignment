@@ -4,7 +4,7 @@ import { Report } from "@/app/lib/definitions";
 export default function ReportsTable({ reports }: { reports: Report[] }) {
   return (
     <table className="table-auto min-w-full">
-      <thead className="bg-neutral-100">
+      <thead className="bg-neutral-100 sticky top-0">
         <tr className="text-sm text-left text-neutral-600">
           <th className="py-2 ps-6">Date</th>
           <th>Report Name</th>
