@@ -13,5 +13,3 @@ export async function fetchReports(currentPage: number, rowsPerPage: number) {
     console.error("Error while fetching:", error);
   }
 }
-
-// fetching everytime page changes improve this and add rows option

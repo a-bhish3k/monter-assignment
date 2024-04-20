@@ -2,6 +2,7 @@ import Link from "next/link";
 import { fetchReports } from "../lib/data";
 import ReportsTable from "../ui/reports/table";
 import Pagination from "../ui/reports/pagination";
+import Rows from "../ui/reports/rows";
 
 export default async function Reports({
   searchParams,
@@ -11,7 +12,10 @@ export default async function Reports({
   const currentPage = Number(searchParams?.page || 1);
   const rowsPerPage = Number(searchParams?.rows || 5);
 
-  const { reports, totalPages } = await fetchReports(currentPage, rowsPerPage);
+  const { reports, totalPages }: any = await fetchReports(
+    currentPage,
+    rowsPerPage
+  );
 
   return (
     <div className="min-h-screen text-neutral-800 flex items-center justify-center">
@@ -55,8 +59,9 @@ export default async function Reports({
           <div className="h-full overflow-auto">
             <ReportsTable reports={reports} />
           </div>
-          <div className="py-4 border-t">
+          <div className="py-4 flex justify-center items-center gap-x-24 border-t">
             <Pagination totalPages={totalPages} />
+            <Rows />
           </div>
         </div>
       </div>
