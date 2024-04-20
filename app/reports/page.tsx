@@ -21,7 +21,7 @@ export default async function Reports({
       <div className="h-full overflow-auto">
         <ReportsTable reports={reports} />
       </div>
-      <div className="py-4 flex justify-center items-center gap-x-24 border-t">
+      <div className="py-4 flex flex-wrap justify-center items-center gap-y-6 gap-x-24 border-t">
         <Pagination totalPages={totalPages} />
         <Rows />
       </div>

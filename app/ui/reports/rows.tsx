@@ -9,12 +9,13 @@ export default function Rows() {
 
   const handleRowsChange = (rowsCount: string) => {
     const params = new URLSearchParams(searchParams);
+    params.set("page", "1");
     params.set("rows", rowsCount);
     replace(`${pathname}?${params.toString()}`);
   };
 
   return (
-    <div className="text-neutral-600">
+    <div className="text-neutral-600 pe-2">
       <label htmlFor="rows" className="text-sm me-3">
         Rows Per Page
       </label>
@@ -27,6 +28,8 @@ export default function Rows() {
         <option value="5">5</option>
         <option value="10">10</option>
         <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="25">25</option>
       </select>
     </div>
   );
