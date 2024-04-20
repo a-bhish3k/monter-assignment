@@ -3,8 +3,15 @@ import { fetchReports } from "../lib/data";
 import ReportsTable from "../ui/reports/table";
 import Pagination from "../ui/reports/pagination";
 
-export default async function Reports() {
-  const reports = await fetchReports();
+export default async function Reports({
+  searchParams,
+}: {
+  searchParams: { page: string; rows: string };
+}) {
+  const currentPage = Number(searchParams?.page || 1);
+  const rowsPerPage = Number(searchParams?.rows || 5);
+
+  const { reports, totalPages } = await fetchReports(currentPage, rowsPerPage);
 
   return (
     <div className="min-h-screen text-neutral-800 flex items-center justify-center">
@@ -49,7 +56,7 @@ export default async function Reports() {
             <ReportsTable reports={reports} />
           </div>
           <div className="py-4 border-t">
-            <Pagination />
+            <Pagination totalPages={totalPages} />
           </div>
         </div>
       </div>

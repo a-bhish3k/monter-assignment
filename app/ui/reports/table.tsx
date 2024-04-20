@@ -1,4 +1,3 @@
-import React from "react";
 import { Report } from "@/app/lib/definitions";
 
 export default function ReportsTable({ reports }: { reports: Report[] }) {
