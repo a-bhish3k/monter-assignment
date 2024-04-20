@@ -3,17 +3,20 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { ArrowLeftIcon, ArrowRightIcon } from "../icons";
+import { generatePagination } from "@/app/lib/utils";
 
 export default function Pagination({ totalPages }: { totalPages: number }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get("page") || 1);
 
-  const params = new URLSearchParams(searchParams);
   const createPageURL = (pageNumber: number) => {
+    const params = new URLSearchParams(searchParams);
     params.set("page", pageNumber.toString());
     return `${pathname}?${params.toString()}`;
   };
+
+  const pages: any = generatePagination(currentPage, totalPages);
 
   return (
     <ul className="text-neutral-600 flex items-center gap-x-2">
@@ -28,22 +31,22 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
           <span className=" text-sm">Prev</span>
         </Link>
       </li>
-      <li>
-        <Link
-          href={""}
-          className="bg-orange-600 text-white py-1.5 px-3.5 rounded-md select-none hover:bg-neutral-50"
-        >
-          1
-        </Link>
-      </li>
-      <li>
-        <Link
-          href={""}
-          className="py-1.5 px-3.5 border rounded-md select-none hover:bg-neutral-50"
-        >
-          1
-        </Link>
-      </li>
+
+      {pages.map((page: number, index: number) => (
+        <li key={page + index}>
+          <Link
+            href={createPageURL(page)}
+            className={`${
+              currentPage === page
+                ? "bg-orange-600 text-white pointer-events-none"
+                : "border hover:bg-neutral-50 select-none"
+            } py-1.5 px-3.5 rounded-md`}
+          >
+            {page}
+          </Link>
+        </li>
+      ))}
+
       <li className="ms-2">
         <Link
           href={createPageURL(currentPage + 1)}
