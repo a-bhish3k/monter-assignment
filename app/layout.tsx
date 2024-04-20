@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Monter | Reports",
-  description: "Recently generated reports",
+  title: "Monter | Home",
+  description: "Homepage of monter",
 };
 
 export default function RootLayout({
